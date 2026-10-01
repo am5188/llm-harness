@@ -13,7 +13,7 @@ export default function HomePage() {
       <SiteHeader pageLabel="书页" />
       <main className="flex-1">
         {/* 封面 */}
-        <section className="mx-auto max-w-5xl px-5 pt-24 pb-16 text-center md:pt-32">
+        <section className="mx-auto max-w-6xl px-5 pt-24 pb-16 text-center md:pt-32">
           <Reveal>
             <p className="mb-4 text-sm tracking-[0.3em] text-sky-300/80">前置课 · LLM 发展史</p>
             <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl">
@@ -41,7 +41,7 @@ export default function HomePage() {
         </section>
 
         {/* 目录 */}
-        <section className="mx-auto max-w-5xl px-5 pb-24">
+        <section className="mx-auto max-w-6xl px-5 pb-24">
           {VOLUMES.map((vol, vi) => {
             const volChapters = chapters.filter((c) => c.meta.volume === vol.volume);
             return (

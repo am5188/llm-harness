@@ -17,7 +17,7 @@ export default function AppendixPage() {
     <>
       <SiteHeader pageLabel="证据附录" backHref="/" />
       <main className="flex-1">
-        <section className="mx-auto max-w-3xl px-5 pt-16 pb-10 md:pt-24">
+        <section className="mx-auto max-w-4xl px-5 pt-16 pb-10 md:pt-24">
           <Reveal>
             <h1 className="text-3xl font-bold text-white md:text-4xl">证据附录</h1>
             <p className="mt-4 leading-8 text-slate-400">
@@ -30,7 +30,7 @@ export default function AppendixPage() {
           </Reveal>
         </section>
 
-        <section className="mx-auto max-w-3xl space-y-8 px-5 pb-24">
+        <section className="mx-auto max-w-4xl space-y-8 px-5 pb-24">
           {cards.length === 0 ? (
             <div className="glass rounded-3xl p-8 text-center text-slate-400">
               证据卡片尚未生成。

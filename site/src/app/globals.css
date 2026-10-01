@@ -144,10 +144,16 @@
     background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.5), transparent);
   }
   .text-gradient {
-    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    background: linear-gradient(90deg, #60a5fa, #a78bfa, #60a5fa);
+    background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradient-flow 7s ease-in-out infinite;
+  }
+  @keyframes gradient-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
   .reveal-item {
     opacity: 0;
@@ -166,6 +172,9 @@
       opacity: 1;
       transform: none;
       transition: none;
+    }
+    .text-gradient {
+      animation: none;
     }
   }
 }

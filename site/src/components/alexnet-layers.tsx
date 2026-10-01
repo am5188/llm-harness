@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type Layer = {
@@ -35,37 +36,76 @@ export function AlexnetLayers() {
   return (
     <div className="glass my-8 rounded-3xl p-6 md:p-8">
       <h3 className="mb-1 text-lg font-bold text-white">AlexNet 的八层结构</h3>
-      <p className="mb-6 text-xs text-slate-500">点击每一层看它在做什么。输入一张 227×227 的图片，输出 1000 个类别的分数。</p>
+      <p className="mb-6 text-xs text-slate-500">
+        点击每一层看它在做什么。输入一张 227×227 的图片，输出 1000 个类别的分数——左边的光点是图片穿过网络的过程。
+      </p>
 
       <div className="space-y-1.5">
         {LAYERS.map((layer, i) => (
-          <button
+          <motion.button
             key={layer.name}
             type="button"
+            initial={{ opacity: 0, x: -18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px 0px" }}
+            transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
             onClick={() => setSelected(selected === i ? null : i)}
             className={cn(
-              "flex w-full items-center gap-3 rounded-xl border bg-gradient-to-r px-4 py-2.5 text-left transition",
+              "relative flex w-full items-center gap-3 overflow-hidden rounded-xl border bg-gradient-to-r px-4 py-2.5 text-left transition",
               TYPE_STYLE[layer.type],
               selected === i ? "ring-2 ring-white/30" : "hover:brightness-125",
             )}
           >
+            {/* 数据流动脉冲 */}
+            <motion.span
+              aria-hidden
+              initial={{ left: "-10%", opacity: 0 }}
+              animate={{ left: ["-10%", "102%"], opacity: [0, 1, 1, 0] }}
+              transition={{
+                duration: 3.2,
+                delay: 0.8 + i * 0.35,
+                repeat: Infinity,
+                repeatDelay: 4,
+                ease: "easeInOut",
+              }}
+              className="pointer-events-none absolute top-0 h-full w-8 bg-gradient-to-r from-transparent via-white/25 to-transparent"
+            />
             <span className="w-24 shrink-0 text-xs font-semibold text-white">{layer.name}</span>
             <span className="w-32 shrink-0 font-mono text-[11px] text-slate-300">{layer.size}</span>
             <span className="hidden flex-1 text-right text-[10px] text-slate-400 md:block">
               {layer.type === "conv" ? "卷积" : layer.type === "pool" ? "池化" : "全连接"}
             </span>
-          </button>
+          </motion.button>
         ))}
       </div>
 
-      {selected !== null ? (
-        <div className="mt-4 rounded-2xl bg-white/5 px-4 py-3 text-sm leading-6 text-slate-300">
-          <span className="font-semibold text-white">{LAYERS[selected].name}</span>
-          {"　"}{LAYERS[selected].detail}
-        </div>
-      ) : (
-        <p className="mt-4 text-center text-xs text-slate-500">↑ 点一层看看</p>
-      )}
+      <AnimatePresence mode="wait">
+        {selected !== null ? (
+          <motion.div
+            key={selected}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="mt-4 rounded-2xl bg-white/5 px-4 py-3 text-sm leading-6 text-slate-300">
+              <span className="font-semibold text-white">{LAYERS[selected].name}</span>
+              {"　"}{LAYERS[selected].detail}
+            </div>
+          </motion.div>
+        ) : (
+          <motion.p
+            key="hint"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="mt-4 text-center text-xs text-slate-500"
+          >
+            ↑ 点一层看看
+          </motion.p>
+        )}
+      </AnimatePresence>
 
       <p className="mt-5 border-t border-white/5 pt-4 text-xs leading-5 text-slate-500">
         结构图基于论文第 3 节；GPU 型号、训练时长等工程细节以论文 PDF 为准逐项核对，暂不作为确定事实。

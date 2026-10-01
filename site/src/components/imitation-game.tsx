@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type Step = {
@@ -56,12 +57,54 @@ const STEPS: Step[] = [
     label: "第 3 步 · 问题成立",
     title: "一个可操作的问题",
     intro: "图灵不再问“机器内部有没有心灵”，只问可观察的行为。",
-    asker: "（隔着文字，你能分辨出它吗？）",
+    asker: "",
     a: { name: "", color: "", reply: "", note: "" },
     b: { name: "", color: "", reply: "", note: "" },
     conclusion: "这就是“图灵测试”的原型：智能被转化为语言行为判据。此后所有对话系统、聊天机器人，甚至大模型的评测，都从这里长出来。",
   },
 ];
+
+function Typewriter({ text, speed = 38, startDelay = 350 }: { text: string; speed?: number; startDelay?: number }) {
+  const [count, setCount] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    setCount(0);
+    const timeout = setTimeout(() => {
+      intervalRef.current = setInterval(() => {
+        setCount((c) => {
+          if (c >= text.length && intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+            return c;
+          }
+          return c + 1;
+        });
+      }, speed);
+    }, startDelay);
+    return () => {
+      clearTimeout(timeout);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [text, speed, startDelay]);
+
+  return (
+    <span>
+      {text.slice(0, count)}
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ duration: 0.8, repeat: Infinity }}
+        className="ml-0.5 inline-block h-4 w-[2px] translate-y-0.5 bg-sky-300"
+      />
+    </span>
+  );
+}
+
+const bubble = {
+  initial: { opacity: 0, y: 14, scale: 0.97 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, y: -10 },
+};
 
 export function ImitationGame() {
   const [step, setStep] = useState(0);
@@ -88,62 +131,87 @@ export function ImitationGame() {
         ))}
       </div>
 
-      <h3 className="mb-2 text-lg font-bold text-white">{s.title}</h3>
-      <p className="mb-5 text-sm text-slate-400">{s.intro}</p>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={step}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          <h3 className="mb-2 text-lg font-bold text-white">{s.title}</h3>
+          <p className="mb-5 text-sm text-slate-400">{s.intro}</p>
 
-      {step < 2 ? (
-        <div className="space-y-4">
-          {/* 询问者 */}
-          <div className="flex items-start gap-3">
-            <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sky-500/20 text-xs font-bold text-sky-300">
-              问
-            </span>
-            <div className="glass flex-1 rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-slate-200">
-              {s.asker}
+          {step < 2 ? (
+            <div className="space-y-4">
+              {/* 询问者 */}
+              <motion.div {...bubble} transition={{ duration: 0.4 }} className="flex items-start gap-3">
+                <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sky-500/20 text-xs font-bold text-sky-300">
+                  问
+                </span>
+                <div className="glass flex-1 rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-slate-200">
+                  <Typewriter text={s.asker} />
+                </div>
+              </motion.div>
+              {/* 参与者 A */}
+              <motion.div {...bubble} transition={{ duration: 0.4, delay: 0.15 }} className="flex items-start gap-3 pl-10">
+                <div className="flex-1">
+                  <div className={cn("mb-1 text-xs font-semibold", s.a.color)}>{s.a.name} · {s.a.note}</div>
+                  <div className="glass rounded-2xl px-4 py-3 text-sm text-slate-300">
+                    <Typewriter text={s.a.reply} startDelay={1100} />
+                  </div>
+                </div>
+              </motion.div>
+              {/* 参与者 B */}
+              <motion.div {...bubble} transition={{ duration: 0.4, delay: 0.3 }} className="flex items-start gap-3 pl-10">
+                <div className="flex-1">
+                  <div className={cn("mb-1 text-xs font-semibold", s.b.color)}>{s.b.name} · {s.b.note}</div>
+                  <div className="glass rounded-2xl px-4 py-3 text-sm text-slate-300">
+                    <Typewriter text={s.b.reply} startDelay={2300} />
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          </div>
-          {/* 参与者 A */}
-          <div className="flex items-start gap-3 pl-10">
-            <div className="flex-1">
-              <div className={cn("mb-1 text-xs font-semibold", s.a.color)}>{s.a.name} · {s.a.note}</div>
-              <div className="glass rounded-2xl px-4 py-3 text-sm text-slate-300">{s.a.reply}</div>
+          ) : (
+            <div className="flex items-center justify-center py-6">
+              <div className="text-center">
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                  className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/20 text-xl"
+                >
+                  🤖
+                </motion.div>
+                <p className="text-sm text-slate-400">
+                  <Typewriter text="隔着文字，你能分辨出它是机器吗？" startDelay={500} />
+                </p>
+              </div>
             </div>
-          </div>
-          {/* 参与者 B */}
-          <div className="flex items-start gap-3 pl-10">
-            <div className="flex-1">
-              <div className={cn("mb-1 text-xs font-semibold", s.b.color)}>{s.b.name} · {s.b.note}</div>
-              <div className="glass rounded-2xl px-4 py-3 text-sm text-slate-300">{s.b.reply}</div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center py-6">
-          <div className="text-center">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-500/20 text-xl">
-              🤖
-            </div>
-            <p className="text-sm text-slate-400">隔着文字，你能分辨出它是机器吗？</p>
-          </div>
-        </div>
-      )}
+          )}
 
-      <div className="mt-6 rounded-2xl bg-white/5 px-4 py-3 text-sm leading-6 text-slate-200">
-        {s.conclusion}
-      </div>
-
-      {/* 下一步 */}
-      <div className="mt-5 flex justify-end">
-        {step < STEPS.length - 1 ? (
-          <button
-            type="button"
-            onClick={() => setStep(step + 1)}
-            className="rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-sky-500/20 hover:text-sky-200"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-6 rounded-2xl bg-white/5 px-4 py-3 text-sm leading-6 text-slate-200"
           >
-            下一步 →
-          </button>
-        ) : null}
-      </div>
+            {s.conclusion}
+          </motion.div>
+
+          {/* 下一步 */}
+          <div className="mt-5 flex justify-end">
+            {step < STEPS.length - 1 ? (
+              <button
+                type="button"
+                onClick={() => setStep(step + 1)}
+                className="rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white transition hover:bg-sky-500/20 hover:text-sky-200"
+              >
+                下一步 →
+              </button>
+            ) : null}
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

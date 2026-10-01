@@ -14,7 +14,7 @@ export default function TimelinePage() {
     <>
       <SiteHeader pageLabel="时间线" backHref="/" />
       <main className="flex-1">
-        <section className="mx-auto max-w-5xl px-5 pt-16 pb-6 md:pt-24">
+        <section className="mx-auto max-w-6xl px-5 pt-16 pb-6 md:pt-24">
           <Reveal>
             <h1 className="text-3xl font-bold text-white md:text-4xl">全书时间线</h1>
             <p className="mt-4 max-w-2xl leading-8 text-slate-400">
@@ -22,7 +22,7 @@ export default function TimelinePage() {
             </p>
           </Reveal>
         </section>
-        <section className="mx-auto max-w-5xl px-5 pb-24">
+        <section className="mx-auto max-w-6xl px-5 pb-24">
           <Reveal>
             <BookTimeline />
           </Reveal>

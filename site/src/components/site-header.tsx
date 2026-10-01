@@ -8,7 +8,7 @@ type SiteHeaderProps = {
 export function SiteHeader({ pageLabel, backHref }: SiteHeaderProps) {
   return (
     <header className="glass sticky top-0 z-50 border-b border-white/5">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
         <div className="flex items-center gap-3">
           <Link
             href="/"

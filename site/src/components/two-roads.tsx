@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type Road = {
@@ -58,30 +59,45 @@ export function TwoRoads() {
           </button>
         ))}
       </div>
-      <div className="rounded-2xl bg-white/5 p-5">
-        <p className="mb-4 text-sm leading-7 text-slate-200">
-          <span className="font-semibold text-white">主张：</span>
-          {road.claim}
-        </p>
-        <div className="mb-4">
-          <div className="mb-2 text-xs font-semibold text-slate-400">工具</div>
-          <div className="flex flex-wrap gap-2">
-            {road.tools.map((t) => (
-              <span key={t} className="glass rounded-full px-3 py-1 text-xs text-slate-300">
-                {t}
-              </span>
-            ))}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={road.key}
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -24 }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          className="rounded-2xl bg-white/5 p-5"
+        >
+          <p className="mb-4 text-sm leading-7 text-slate-200">
+            <span className="font-semibold text-white">主张：</span>
+            {road.claim}
+          </p>
+          <div className="mb-4">
+            <div className="mb-2 text-xs font-semibold text-slate-400">工具</div>
+            <div className="flex flex-wrap gap-2">
+              {road.tools.map((t) => (
+                <motion.span
+                  key={t}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.08 }}
+                  className="glass rounded-full px-3 py-1 text-xs text-slate-300"
+                >
+                  {t}
+                </motion.span>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="mb-4 text-sm leading-7 text-slate-300">
-          <span className="font-semibold text-amber-300">瓶颈：</span>
-          {road.bottleneck}
-        </div>
-        <div className="text-sm leading-7 text-slate-300">
-          <span className="font-semibold text-emerald-300">结局：</span>
-          {road.ending}
-        </div>
-      </div>
+          <div className="mb-4 text-sm leading-7 text-slate-300">
+            <span className="font-semibold text-amber-300">瓶颈：</span>
+            {road.bottleneck}
+          </div>
+          <div className="text-sm leading-7 text-slate-300">
+            <span className="font-semibold text-emerald-300">结局：</span>
+            {road.ending}
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_SC, Geist_Mono } from "next/font/google";
+import { MotionConfig } from "motion/react";
 import { PageChrome } from "@/components/page-chrome";
 import "./globals.css";
 
@@ -30,8 +31,10 @@ export default function RootLayout({
       className={`dark ${notoSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-        <PageChrome />
+        <MotionConfig reducedMotion="user">
+          {children}
+          <PageChrome />
+        </MotionConfig>
       </body>
     </html>
   );

@@ -48,7 +48,7 @@ export default async function ChapterPage({
       <SiteHeader pageLabel={meta.title} backHref="/" />
       <main className="flex-1">
         {/* 章首 */}
-        <section className="mx-auto max-w-3xl px-5 pt-16 pb-8 md:pt-24">
+        <section className="mx-auto max-w-4xl px-5 pt-16 pb-8 md:pt-24">
           <Reveal>
             <div className="mb-4 flex items-center gap-3">
               <span className="glass rounded-full px-3 py-1 text-xs text-sky-300">
@@ -63,12 +63,12 @@ export default async function ChapterPage({
         </section>
 
         {/* 正文 */}
-        <article className="mx-auto max-w-3xl px-5 pb-16">
+        <article className="mx-auto max-w-4xl px-5 pb-16">
           <Component />
         </article>
 
         {/* 上/下章 */}
-        <section className="mx-auto max-w-3xl px-5 pb-24">
+        <section className="mx-auto max-w-4xl px-5 pb-24">
           <div className="glass flex flex-col gap-4 rounded-3xl p-6 md:flex-row md:items-center md:justify-between">
             {prev ? (
               <Link href={`/chapters/${prev.meta.slug}`} className="group text-sm text-slate-400 transition hover:text-white">
