@@ -1,18 +1,14 @@
-# OS / editor
+# 本地代理与 agent 配置，不入库
+.pi/
+
+# 站点依赖与构建产物
+site/node_modules/
+site/.next/
+site/out/
+site/*.tsbuildinfo
+site/next-env.d.ts
+
+# misc
 .DS_Store
-*.swp
-.vscode/
-.idea/
-
-# Secrets and local environment
-.env
-.env.*
-!.env.example
-
-# Generated artifacts
-__pycache__/
-*.py[cod]
-.pytest_cache/
-node_modules/
-dist/
-build/
+*.pem
+.env*
