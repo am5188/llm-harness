@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "deploy": "bash scripts/deploy.sh",
-    "video:ch1": "remotion render remotion/index.ts Ch1Turing public/videos/ch1-turing.mp4 --codec=h264"
+    "video:ch1": "bash scripts/render-video.sh"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
