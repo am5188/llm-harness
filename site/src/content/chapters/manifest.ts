@@ -41,7 +41,6 @@ export const chapters: ChapterEntry[] = [
       title: "第5章 · Transformer：注意力就是一切",
       slug: "ch5-transformer",
       summary: "2017 年一篇论文同时解决了并行训练与长程依赖，规模化第一次成为明确的工程路径。",
-      evidence: ["E-0001"],
     }),
   },
   {
@@ -62,7 +61,6 @@ export const chapters: ChapterEntry[] = [
       title: "第7章 · 规模法则与对齐",
       slug: "ch7-scaling",
       summary: "GPT-3 展示少样本能力，scaling laws 把参数、数据与算力写成公式；RLHF 让模型从续写变成对话。",
-      evidence: ["E-0002"],
     }),
   },
   {
@@ -83,8 +81,7 @@ export const chapters: ChapterEntry[] = [
       volumeTitle: "ChatGPT 与开放时代",
       title: "第9章 · ChatGPT 时刻",
       slug: "ch9-chatgpt",
-      summary: "2022 年 11 月 30 日，研究积累、对齐技术与产品分发同时成熟——五天一亿用户的时刻。",
-      evidence: ["E-0004"],
+      summary: "2022 年 11 月 30 日，研究积累、对齐技术与产品分发同时成熟，成为一个产品分水岭。",
     }),
   },
   {
@@ -94,8 +91,7 @@ export const chapters: ChapterEntry[] = [
       volumeTitle: "ChatGPT 与开放时代",
       title: "第10章 · 开放权重浪潮",
       slug: "ch10-open-weights",
-      summary: "Meta LLaMA 泄露与开放：权重扩散改变产业结构，但训练成本并未消失。",
-      evidence: ["E-0005"],
+      summary: "Meta LLaMA、Llama 2、Mistral 与 Qwen 让权重扩散改变产业结构，但训练成本并未消失。",
     }),
   },
   {
@@ -106,7 +102,6 @@ export const chapters: ChapterEntry[] = [
       title: "第11章 · 效率与推理",
       slug: "ch11-efficiency",
       summary: "Chinchilla 追问计算最优，DeepSeek 用工程效率与推理模型震动全球。",
-      evidence: ["E-0003", "E-0006", "E-0007"],
     }),
   },
   {
