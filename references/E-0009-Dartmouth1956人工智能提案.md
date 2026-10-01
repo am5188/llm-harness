@@ -9,5 +9,5 @@
 - **证据**：[S-0002]（A）
 - **原文定位**：提案第 1 页“we propose that a 2 month, 10 man study...”及“Every aspect of learning...”段落；“The study is to proceed...”列出的研究主题。
 - **来源**：McCarthy, Minsky, Rochester, Shannon, *A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence* (1955), https://raysolomonoff.com/dartmouth/boxa/dart564props.pdf；HTML 转录：https://jmc.stanford.edu/articles/dartmouth.html
-- **访问日期**：2026-06-15
+- **访问日期**：2026-10-02
 - **待核查**：会议实际参与者、讨论内容和“AI 诞生”说法需结合 Dartmouth 档案；不能把提案日期误写成会议日期。
