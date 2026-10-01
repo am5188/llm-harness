@@ -1,0 +1,18 @@
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Generated artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+dist/
+build/
