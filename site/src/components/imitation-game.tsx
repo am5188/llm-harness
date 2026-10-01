@@ -69,7 +69,6 @@ function Typewriter({ text, speed = 38, startDelay = 350 }: { text: string; spee
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    setCount(0);
     const timeout = setTimeout(() => {
       intervalRef.current = setInterval(() => {
         setCount((c) => {

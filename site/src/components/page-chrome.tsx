@@ -42,9 +42,6 @@ export function PageChrome() {
       el.classList.add("scroll-mt-24");
       return { id: el.id, text: (el.textContent ?? "").trim() };
     });
-    setSections(found);
-    setActiveId(found[0]?.id ?? "");
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -55,6 +52,10 @@ export function PageChrome() {
       { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
     );
     headings.forEach((el) => observer.observe(el));
+    requestAnimationFrame(() => {
+      setSections(found);
+      setActiveId(found[0]?.id ?? "");
+    });
     return () => observer.disconnect();
   }, [pathname]);
 
