@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/llm-harness/_next/static/chunks/2mq7qz6uha5hm.js","/llm-harness/_next/static/chunks/2-h7ytbke9k7_.js","/llm-harness/_next/static/chunks/2-4xjt9ahpg4i.js","/llm-harness/_next/static/chunks/14mrh2-p_w84d.js"],"ViewportBoundary"]
+3:I[97367,["/llm-harness/_next/static/chunks/2mq7qz6uha5hm.js","/llm-harness/_next/static/chunks/2-h7ytbke9k7_.js","/llm-harness/_next/static/chunks/2-4xjt9ahpg4i.js","/llm-harness/_next/static/chunks/14mrh2-p_w84d.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"第4章 · 让机器读懂词 · 从图灵到 Harness"}],["$","meta","1",{"name":"description","content":"Word2Vec、GloVe、seq2seq 和注意力，把离散的词变成可计算的表示，也暴露了固定向量和循环计算的瓶颈。"}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"hwkANNsl_zHDOBrsaQOOz"}
