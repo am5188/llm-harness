@@ -5,6 +5,8 @@ import { VOLUMES } from "@/lib/chapters";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ConditionsMap } from "@/components/conditions-map";
+import { RoutesMap } from "@/components/routes-map";
 
 export default function HomePage() {
   const published = chapters.filter((c) => c.meta.status === "published");
@@ -19,8 +21,8 @@ export default function HomePage() {
             <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl">
               从<span className="text-gradient">图灵</span>到<span className="text-gradient">Harness</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400 md:text-lg">
-              大语言模型的前世今生。1950 年，图灵问机器能不能思考；2022 年，ChatGPT 让全世界第一次用上它；今天，我们为它装上手脚——那套系统叫 Harness。
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-400 md:text-lg">
+              1950 年，图灵提出了目标；2022 年，ChatGPT 把一组长期汇合的条件变成大众产品。接下来我们会看到：为什么模型会生成，却不能可靠地记忆、检索、执行和治理——这正是 Harness 要接管的地方。
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
@@ -36,6 +38,30 @@ export default function HomePage() {
               >
                 先看全书时间线
               </Link>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* 录音主线总图 */}
+        <section className="mx-auto max-w-6xl px-5 pb-24">
+          <Reveal>
+            <ConditionsMap />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="mt-5">
+              <RoutesMap />
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="glass mt-5 grid gap-4 rounded-3xl p-6 text-sm leading-7 text-slate-300 md:grid-cols-2 md:p-8">
+              <div>
+                <h2 className="mb-2 text-lg font-bold text-white">同一技术，不同产业路径</h2>
+                <p>本书把中美差异放在芯片、云、资本、人才、应用市场、监管与开放权重策略中比较；“某种网页或 App 形态单独决定成败”仍需数据检验。</p>
+              </div>
+              <div>
+                <h2 className="mb-2 text-lg font-bold text-white">模型能力有边界</h2>
+                <p>模型能生成文本、计划和结构化调用；跨请求的状态、真实执行、权限、恢复、评测与观测由外部系统承担。终章会把这些部件交接给 Harness 主课。</p>
+              </div>
             </div>
           </Reveal>
         </section>
