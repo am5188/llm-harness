@@ -9,6 +9,7 @@ EDGE_OUTPUT=ch1-sample-narration.mp3 \
 EDGE_ALIGNMENT_OUTPUT=ch1-sample-alignment.json \
 node scripts/tts.mjs
 
-npx remotion render remotion/index.ts Ch1StyleSample /tmp/ch1-style-sample.mp4 --codec=h264
-ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_type,codec_name -of default=noprint_wrappers=1 /tmp/ch1-style-sample.mp4
-printf '✅ 样片：/tmp/ch1-style-sample.mp4\n'
+OUTPUT="public/videos/ch1-turing.mp4"
+npx remotion render remotion/index.ts Ch1StyleSample "$OUTPUT" --codec=h264
+ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_type,codec_name -of default=noprint_wrappers=1 "$OUTPUT"
+printf '✅ 已替换正式第1章视频：%s\n' "$OUTPUT"
