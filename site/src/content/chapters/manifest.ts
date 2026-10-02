@@ -2,6 +2,7 @@ import type { ChapterMeta } from "@/lib/chapters";
 import Ch1, { meta as ch1 } from "./ch1-turing.mdx";
 import Ch2, { meta as ch2 } from "./ch2-two-winters.mdx";
 import Ch3, { meta as ch3 } from "./ch3-alexnet.mdx";
+import Ch4, { meta as ch4 } from "./ch4-words.mdx";
 
 export type ChapterEntry = {
   meta: ChapterMeta;
@@ -23,16 +24,7 @@ export const chapters: ChapterEntry[] = [
   { meta: ch2, Component: Ch2 },
   { meta: ch3, Component: Ch3 },
   // —— 卷② 语言模型找到了路（2013–2022）——
-  {
-    meta: PLANNED({
-      order: 4,
-      volume: 2,
-      volumeTitle: "语言模型找到了路",
-      title: "第4章 · 让机器读懂词",
-      slug: "ch4-words",
-      summary: "词向量、seq2seq 与注意力：语言从离散符号变成可以计算的连续表示。",
-    }),
-  },
+  { meta: ch4, Component: Ch4 },
   {
     meta: PLANNED({
       order: 5,

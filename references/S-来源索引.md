@@ -9,6 +9,10 @@
 | S-0003 | A | Learning representations by back-propagating errors | Rumelhart, Hinton, Williams | 1986 | https://doi.org/10.1038/323533a0 |
 | S-0004 | B | Artificial Intelligence: A Modern Approach（AI 历史与专家系统章节） | Russell & Norvig | — | 版本待核对 |
 | S-0005 | A | ImageNet Classification with Deep Convolutional Neural Networks | Krizhevsky, Sutskever, Hinton | 2012-09 | https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks |
+| S-0006 | A | Efficient Estimation of Word Representations in Vector Space | Mikolov et al. | 2013-01-16（首稿） | https://arxiv.org/abs/1301.3781 |
+| S-0007 | A | GloVe: Global Vectors for Word Representation | Pennington, Socher, Manning | 2014-10 | https://aclanthology.org/D14-1162/ |
+| S-0008 | A | Sequence to Sequence Learning with Neural Networks | Sutskever, Vinyals, Le | 2014-09-07（首稿） | https://arxiv.org/abs/1409.3215 |
+| S-0009 | A | Neural Machine Translation by Jointly Learning to Align and Translate | Bahdanau, Cho, Bengio | 2014-09-01（首稿） | https://arxiv.org/abs/1409.0473 |
 
 ## 维护要求
 
